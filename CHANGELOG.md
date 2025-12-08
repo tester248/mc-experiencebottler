@@ -1,4 +1,4 @@
-## [1.21.1+build.1 [2025-12-08]](#1.21.1+build.1)
+## [1.21.1+build.1 [2024-12-08]](#1.21.1+build.1)
 * Migrate to Minecraft 1.21.1
 * Update Fabric Loader to 0.16.0
 * Update Fabric API to 0.102.0+1.21.1
