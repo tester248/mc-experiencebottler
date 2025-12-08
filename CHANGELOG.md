@@ -1,3 +1,10 @@
+## [1.21.1+build.1 [2025-12-08]](#1.21.1+build.1)
+* Migrate to Minecraft 1.21.1
+* Update Fabric Loader to 0.16.0
+* Update Fabric API to 0.102.0+1.21.1
+* Update Yarn mappings to 1.21.1+build.3
+* Update Fabric Loom to 1.6.25
+
 ## [1.21+build.2 [2024-06-18]](#1.21+build.2)
 * EideeHi: Add Spanish translation (provided by Bruno Collazo)
 
