@@ -1,0 +1,63 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'microsoft'
+          java-version: '21'
+          
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+        
+      - name: Make gradlew executable
+        run: chmod +x gradlew
+        
+      - name: Build with Gradle
+        run: ./gradlew build --no-daemon
+        
+      - name: Get version from gradle.properties
+        id: get_version
+        run: |
+          VERSION=$(grep '^mod_version=' gradle.properties | cut -d'=' -f2)
+          echo "mod_version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Building version: $VERSION"
+          
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            build/libs/*.jar
+          name: Experience Bottler ${{ steps.get_version.outputs.mod_version }}
+          body: |
+            ## Experience Bottler ${{ steps.get_version.outputs.mod_version }}
+            
+            See [CHANGELOG.md](https://github.com/${{ github.repository }}/blob/${{ github.ref_name }}/CHANGELOG.md) for details.
+            
+            ### Installation
+            1. Install [Fabric Loader](https://fabricmc.net/use/)
+            2. Download [Fabric API](https://modrinth.com/mod/fabric-api)
+            3. Place both the Fabric API and this mod in your `mods` folder
+            
+            ### Files
+            - `experiencebottler-${{ steps.get_version.outputs.mod_version }}.jar` - Main mod file
+            - `experiencebottler-${{ steps.get_version.outputs.mod_version }}-sources.jar` - Source code
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
