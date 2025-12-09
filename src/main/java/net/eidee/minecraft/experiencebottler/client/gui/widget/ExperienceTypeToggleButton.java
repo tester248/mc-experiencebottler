@@ -36,6 +36,7 @@ import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
 import net.minecraft.client.gui.screen.narration.NarrationPart;
 import net.minecraft.client.gui.widget.PressableWidget;
 import net.minecraft.client.render.GameRenderer;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
@@ -93,8 +94,7 @@ public class ExperienceTypeToggleButton extends PressableWidget {
 
   @Override
   protected void renderWidget(DrawContext context, int mouseX, int mouseY, float delta) {
-    RenderSystem.setShader(GameRenderer::getPositionTexProgram);
-    context.setShaderColor(1.0f, 1.0f, 1.0f, alpha);
+    RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, alpha);
     RenderSystem.enableBlend();
     RenderSystem.defaultBlendFunc();
     RenderSystem.enableDepthTest();
@@ -104,7 +104,7 @@ public class ExperienceTypeToggleButton extends PressableWidget {
     final int left = getX();
     final int top = getY();
 
-    context.drawGuiTexture(TEXTURES.get(active, isHovered()), left, top, width, height);
+    context.drawGuiTexture(RenderLayer::getGuiTextured, TEXTURES.get(active, isHovered()), left, top, width, height);
 
     final int xCenter = left + width / 2;
 

@@ -1,3 +1,13 @@
+## [1.21.4+build.1 [2025-12-09]](#1.21.4+build.1)
+* Migrate to Minecraft 1.21.4
+* Update Fabric Loader to 0.18.1
+* Update Fabric API to 0.108.0+1.21.4
+* Update Yarn mappings to 1.21.4+build.8
+* Update Loom to 1.9-SNAPSHOT
+* Update Gradle to 8.11.1
+* Fix rendering API changes (UseAction, ActionResult, DrawContext methods)
+* Remove obsolete shader setup calls
+
 ## [1.21+build.2 [2024-06-18]](#1.21+build.2)
 * EideeHi: Add Spanish translation (provided by Bruno Collazo)
 

@@ -44,6 +44,7 @@ import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.Element;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
@@ -204,10 +205,9 @@ public class ExperienceBottlerScreen extends HandledScreen<ExperienceBottlerScre
 
   @Override
   protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
-    RenderSystem.setShader(GameRenderer::getPositionTexProgram);
-    context.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+    RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 
-    context.drawTexture(BACKGROUND, x, y, 0, 0, backgroundWidth, backgroundHeight);
+    context.drawTexture(RenderLayer::getGuiTextured, BACKGROUND, x, y, 0, 0, backgroundWidth, backgroundHeight, 256, 256);
   }
 
   @Override
